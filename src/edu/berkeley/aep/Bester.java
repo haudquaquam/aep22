@@ -5,11 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 
 //Understands the "best" quantity of a list of quantities
-public final class BestQuantity {
+public final class Bester {
     private final List<Bestable> _quantities = new ArrayList<>();
     private Bestable _bestQuantity;
 
-    public BestQuantity(Bestable... quantities) {
+    public Bester(Bestable... quantities) {
+        if (quantities == null) throw new NullPointerException();
         _quantities.addAll(Arrays.asList(quantities));
         findBest();
     }

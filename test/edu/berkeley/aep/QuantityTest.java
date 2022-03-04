@@ -2,10 +2,6 @@ package edu.berkeley.aep;
 
 import org.junit.Test;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class QuantityTest {
@@ -119,18 +115,6 @@ public class QuantityTest {
         threeTbsp.betterThan(oneInch);
     }
 
-    @Test
-    public void bestQuantityShouldBeTwelveFeet() {
-
-        var twelveFeet = new ArithmeticQuantity(12, Unit.FOOT);
-        var thirteenInches = new ArithmeticQuantity(13, Unit.INCH);
-        var threeYards = new ArithmeticQuantity(3, Unit.YARD);
-        var twoFeet = new ArithmeticQuantity(2, Unit.FOOT);
-
-        var findBest = new BestQuantity(twelveFeet, thirteenInches, threeYards, twoFeet);
-
-        assertEquals(twelveFeet, findBest.bestQuantity());
-    }
 /*
     @Test
     public void bestQuantityShouldBe20TableSpoons() {
