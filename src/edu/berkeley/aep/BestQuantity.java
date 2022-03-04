@@ -1,16 +1,15 @@
 package edu.berkeley.aep;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 //Understands the "best" quantity of a list of quantities
 public final class BestQuantity {
-    private final List<ScaledQuantity> _quantities = new ArrayList<>();
-    private ScaledQuantity _bestQuantity;
+    private final List<Bestable> _quantities = new ArrayList<>();
+    private Bestable _bestQuantity;
 
-    public BestQuantity(ScaledQuantity... quantities) {
+    public BestQuantity(Bestable... quantities) {
         _quantities.addAll(Arrays.asList(quantities));
         findBest();
     }
@@ -26,7 +25,7 @@ public final class BestQuantity {
         _bestQuantity =  _quantities.get(0);
     }
 
-    public ScaledQuantity bestQuantity() {
+    public Bestable bestQuantity() {
         return _bestQuantity;
     }
 

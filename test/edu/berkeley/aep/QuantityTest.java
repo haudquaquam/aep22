@@ -2,7 +2,11 @@ package edu.berkeley.aep;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class QuantityTest {
     @Test
@@ -84,28 +88,28 @@ public class QuantityTest {
     public void thirteenInchesShouldBeBetterThanOneFoot() {
         var thirteenInches = new ArithmeticQuantity(13, Unit.INCH);
         var oneFoot = new ArithmeticQuantity(1, Unit.FOOT);
-        assertEquals(true, thirteenInches.betterThan(oneFoot));
+        assertTrue(thirteenInches.betterThan(oneFoot));
     }
 
     @Test
     public void twelveInchesShouldNotBeBetterThanOneFoot() {
         var twelveInches = new ArithmeticQuantity(12, Unit.INCH);
         var oneFoot = new ArithmeticQuantity(1, Unit.FOOT);
-        assertEquals(false, twelveInches.betterThan(oneFoot));
+        assertFalse(twelveInches.betterThan(oneFoot));
     }
 
     @Test
     public void twelveFeetShouldBeBetterThanThirteenInches() {
         var twelveFeet = new ArithmeticQuantity(12, Unit.FOOT);
         var thirteenInches = new ArithmeticQuantity(13, Unit.INCH);
-        assertEquals(true, twelveFeet.betterThan(thirteenInches));
+        assertTrue(twelveFeet.betterThan(thirteenInches));
     }
 
     @Test
     public void threeTablespoonsShouldNotBeBetterThanTenTeaspoons() {
         var threeTbsp = new ArithmeticQuantity(3, Unit.TBSP);
         var tenTsp = new ArithmeticQuantity(10, Unit.TSP);
-        assertEquals(false, threeTbsp.betterThan(tenTsp));
+        assertFalse(threeTbsp.betterThan(tenTsp));
     }
 
     @Test(expected = RuntimeException.class)
@@ -114,4 +118,33 @@ public class QuantityTest {
         var oneInch = new ArithmeticQuantity(1, Unit.INCH);
         threeTbsp.betterThan(oneInch);
     }
+
+    @Test
+    public void bestQuantityShouldBeTwelveFeet() {
+
+        var twelveFeet = new ArithmeticQuantity(12, Unit.FOOT);
+        var thirteenInches = new ArithmeticQuantity(13, Unit.INCH);
+        var threeYards = new ArithmeticQuantity(3, Unit.YARD);
+        var twoFeet = new ArithmeticQuantity(2, Unit.FOOT);
+
+        var findBest = new BestQuantity(twelveFeet, thirteenInches, threeYards, twoFeet);
+
+        assertEquals(twelveFeet, findBest.bestQuantity());
+    }
+/*
+    @Test
+    public void bestQuantityShouldBe20TableSpoons() {
+
+        var oneTeaSpoon = new ArithmeticQuantity(1, Unit.TSP);
+        var twentyTableSpoons = new ArithmeticQuantity(20, Unit.TBSP);
+        var threeYards = new ArithmeticQuantity(3, Unit.YARD);
+        var twoFeet = new ArithmeticQuantity(2, Unit.FOOT);
+
+        ArrayList<ArithmeticQuantity> quantities = new ArrayList<>(List.of(twelveFeet, thirteenInches, threeYards, twoFeet));
+
+        var findBest = new BestQuantity(quantities);*/
+
+      /*  assertEquals(twentyTableSpoons, findBest.bestQuantity());
+    }
+*/
 }
