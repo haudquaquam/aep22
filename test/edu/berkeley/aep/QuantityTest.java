@@ -114,12 +114,4 @@ public class QuantityTest {
         var oneInch = new ArithmeticQuantity(1, Unit.INCH);
         threeTbsp.betterThan(oneInch);
     }
-
-    @Test()
-    public void wrongTest() {
-        var threeTbsp = new ArithmeticQuantity(1, Unit.TBSP);
-        var oneInch = new ArithmeticQuantity(1, Unit.OZ);
-        assertTrue(threeTbsp.betterThan(oneInch));
-    }
-
 }
