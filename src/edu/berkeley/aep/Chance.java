@@ -1,7 +1,7 @@
 package edu.berkeley.aep;
 
 // Understands the likelihood of something happening
-public class Chance implements Bestable {
+public class Chance implements Bestable<Chance> {
     private final double probability;
 
     public Chance(double probability) {
@@ -34,8 +34,8 @@ public class Chance implements Bestable {
     }
 
     @Override
-    public boolean betterThan(Bestable other) {
-        Chance otherQuantity = (Chance) other;
+    public boolean betterThan(Chance other) {
+        Chance otherQuantity = other;
         return this.probability > otherQuantity.probability;
     }
 }

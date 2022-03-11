@@ -1,6 +1,6 @@
 package edu.berkeley.aep;
 
-public class ScaledQuantity implements Bestable {
+public class ScaledQuantity implements Bestable<ScaledQuantity> {
     protected final int amount;
     protected final Unit unit;
 
@@ -10,8 +10,8 @@ public class ScaledQuantity implements Bestable {
     }
 
     @Override
-    public boolean betterThan(Bestable other) { // strictly looks at magnitude, greater magnitude is "better"
-        ScaledQuantity otherQuantity = (ScaledQuantity) other;
+    public boolean betterThan(ScaledQuantity other) { // strictly looks at magnitude, greater magnitude is "better"
+        ScaledQuantity otherQuantity = other;
         return this.amount > otherQuantity.convert(this.unit);
     }
 

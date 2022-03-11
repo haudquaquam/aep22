@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class ChanceTest {
 
@@ -48,5 +47,12 @@ public class ChanceTest {
         var coinTosses = new HashMap<Chance, String>();
         coinTosses.put(coinToss, "Heads!");
         assertEquals("Heads!", coinTosses.get(new Chance(0.5)));
+    }
+
+    @Test
+    public void oneHalfShouldBeBetterThanOneThird() {
+        var oneHalf = new Chance(0.5);
+        var oneThird = new Chance(1 / 3);
+        assertTrue(oneHalf.betterThan(oneThird));
     }
 }
