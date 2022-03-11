@@ -115,20 +115,11 @@ public class QuantityTest {
         threeTbsp.betterThan(oneInch);
     }
 
-/*
-    @Test
-    public void bestQuantityShouldBe20TableSpoons() {
-
-        var oneTeaSpoon = new ArithmeticQuantity(1, Unit.TSP);
-        var twentyTableSpoons = new ArithmeticQuantity(20, Unit.TBSP);
-        var threeYards = new ArithmeticQuantity(3, Unit.YARD);
-        var twoFeet = new ArithmeticQuantity(2, Unit.FOOT);
-
-        ArrayList<ArithmeticQuantity> quantities = new ArrayList<>(List.of(twelveFeet, thirteenInches, threeYards, twoFeet));
-
-        var findBest = new BestQuantity(quantities);*/
-
-      /*  assertEquals(twentyTableSpoons, findBest.bestQuantity());
+    @Test()
+    public void wrongTest() {
+        var threeTbsp = new ArithmeticQuantity(1, Unit.TBSP);
+        var oneInch = new ArithmeticQuantity(1, Unit.OZ);
+        threeTbsp.betterThan(oneInch);
     }
-*/
+
 }
