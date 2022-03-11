@@ -119,7 +119,7 @@ public class QuantityTest {
     public void wrongTest() {
         var threeTbsp = new ArithmeticQuantity(1, Unit.TBSP);
         var oneInch = new ArithmeticQuantity(1, Unit.OZ);
-        threeTbsp.betterThan(oneInch);
+        assertTrue(threeTbsp.betterThan(oneInch));
     }
 
 }
