@@ -1,4 +1,4 @@
-<project name="aep19">
+<project name="aep22">
     <property name="main.build.dir" value="build/main"/>
     <property name="main.src.dir" value="src"/>
     <property name="test.build.dir" value="build/test"/>

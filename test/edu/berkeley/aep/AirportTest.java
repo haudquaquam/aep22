@@ -1,60 +1,63 @@
 package edu.berkeley.aep;
 
 
-import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
 
-import javax.lang.model.type.ArrayType;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
+// Tests Airport and RouteFinder classes
 public class AirportTest {
+
+    Airport A = new Airport("A");
+    Airport B = new Airport("B", "C", "A");
+    Airport C = new Airport("C", "E", "E", "D");
+    Airport D = new Airport("D", "E");
+    Airport E = new Airport("E", "B");
+    Airport G = new Airport("G");
+    Airport H = new Airport("H", "B");
+
+    RouteFinder finder = new RouteFinder(A, B, C, D, E, G, H);
+
+    @Test
+    public void multiStringConstructorShouldWork() {
+        Airport test = new Airport("Test", "Dest 1", "Dest 2");
+        String[] correct = {"Dest 1", "Dest 2"};
+        assertArrayEquals(correct, test.getRoutes().toArray(new String[0]));
+    }
+
+    @Test
+    public void multiAirplaneAddRouteShouldWork() {
+        Airport test = new Airport("Test");
+        test.addRoute("A", "B", "C");
+        String[] correctRoutes = {"A", "B", "C"};
+        assertArrayEquals(correctRoutes, test.getRoutes().toArray(new String[0]));
+    }
 
     @Test
     public void aToHShouldNotBeValidRoute() {
-        ArrayList<String> aRoutes = new ArrayList<>();
-        Airport A = new Airport("A", aRoutes);
-        assertFalse(A.goesTo("H"));
+        assertFalse(finder.find("A", "H"));
     }
 
     @Test
     public void cToCShouldBeValidRoute() {
-        ArrayList<String> cRoutes = new ArrayList<>();
-        cRoutes.add("D");
-        cRoutes.add("E");
-        cRoutes.add("E");
-        Airport C = new Airport("C", cRoutes);
-        assertTrue(C.goesTo("C"));
+        assertTrue(finder.find("C", "C"));
     }
 
     @Test
     public void bToCShouldBeValidRoute() {
-        ArrayList<String> bRoutes = new ArrayList<>();
-        bRoutes.add("A");
-        bRoutes.add("C");
-        Airport B = new Airport("B", bRoutes);
-        assertTrue(B.goesTo("C"));
+        assertTrue(finder.find("B", "C"));
     }
 
     @Test
     public void bToDShouldBeValidRoute() {
-        ArrayList<String> bRoutes = new ArrayList<>();
-        ArrayList<String> cRoutes = new ArrayList<>();
-
-        bRoutes.add("A");
-        bRoutes.add("C");
-
-        cRoutes.add("D");
-        cRoutes.add("E");
-        cRoutes.add("E");
-
-        Airport B = new Airport("B", bRoutes);
-        Airport C = new Airport("C", cRoutes);
-
         RouteFinder bToDRouteFinder = new RouteFinder(B, C);
-
         assertTrue(bToDRouteFinder.find("B", "D"));
+    }
+
+    @Test
+    public void bToHShouldNotBeValidRoute() {
+        assertFalse(finder.find("B", "H"));
     }
 }
