@@ -20,4 +20,18 @@ public class AirportTest {
         Airport C = new Airport("C", cRoutes);
         assertTrue(C.goesTo("C"));
     }
+
+    @Test
+    public void addRouteFunctionShouldWork1() {
+        ArrayList<String> cRoutes = new ArrayList<>();
+        cRoutes.add("E");
+        Airport C = new Airport("C", cRoutes);
+        cRoutes.add("F");
+        C.add("F");
+        for (String dest : cRoutes) {
+            assertTrue(C.goesTo(dest));
+        }
+    }
+
+
 }
