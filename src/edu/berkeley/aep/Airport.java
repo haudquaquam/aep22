@@ -15,11 +15,16 @@ public class Airport {
         _myRoutes = myRoutes;
     }
 
-    public void add(String destination) {
+    public String name() {
+        return _myName;
+    }
+
+    public void add(String... destination) {
         _myRoutes.addAll(Arrays.asList(destination));
     }
 
     public boolean goesTo(String destination) {
-        return _myName == destination || _myRoutes.contains(destination);
+        return destination.equals(_myName) || _myRoutes.contains(destination);
     }
+
 }

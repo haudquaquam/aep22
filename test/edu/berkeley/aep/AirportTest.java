@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class AirportTest {
     @Test
     public void cToCShouldBeValidRoute() {
-        Airport C = new Airport("C", null);
+        Airport C = new Airport("C", new ArrayList<>());
         assertTrue(C.goesTo("C"));
     }
 
@@ -33,5 +33,25 @@ public class AirportTest {
         }
     }
 
+    @Test
+    public void multipleAddRouteFunctionShouldWork() {
+        ArrayList<String> cRoutes = new ArrayList<>();
+        cRoutes.add("E");
+        cRoutes.add("K");
+        cRoutes.add("P");
+        Airport C = new Airport("C", cRoutes);
+        cRoutes.add("F");
+        C.add("F", "K", "P");
+        for (String dest : cRoutes) {
+            assertTrue(C.goesTo(dest));
+        }
+    }
+
+    @Test
+    public void routeFinderShouldFindRouteFromCToC() {
+        Airport C = new Airport("C", new ArrayList<>());
+        RouteFinder finder = new RouteFinder(C);
+        assertTrue(finder.findRoute("C", "C"));
+    }
 
 }
