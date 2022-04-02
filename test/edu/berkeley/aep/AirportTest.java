@@ -18,7 +18,6 @@ public class AirportTest {
         ArrayList<String> cRoutes = new ArrayList<>();
         cRoutes.add("E");
         Airport C = new Airport("C", cRoutes);
-
+        assertTrue(C.goesTo("C"));
     }
-
 }
