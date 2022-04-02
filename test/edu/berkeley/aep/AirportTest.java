@@ -9,9 +9,16 @@ import static org.junit.Assert.*;
 public class AirportTest {
     @Test
     public void cToCShouldBeValidRoute() {
-        Airport C = new Airport("C");
+        Airport C = new Airport("C", null);
         assertTrue(C.goesTo("C"));
     }
 
+    @Test
+    public void cToEShouldBeValidRoute() {
+        ArrayList<String> cRoutes = new ArrayList<>();
+        cRoutes.add("E");
+        Airport C = new Airport("C", cRoutes);
+
+    }
 
 }
