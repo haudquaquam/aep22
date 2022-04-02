@@ -22,7 +22,7 @@ public class AirportTest {
     }
 
     @Test
-    public void addRouteFunctionShouldWork1() {
+    public void addRouteFunctionShouldWork() {
         ArrayList<String> cRoutes = new ArrayList<>();
         cRoutes.add("E");
         Airport C = new Airport("C", cRoutes);

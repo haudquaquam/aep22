@@ -15,8 +15,8 @@ public class Airport {
         _myRoutes = myRoutes;
     }
 
-    public void add(String... destinations) {
-        _myRoutes.addAll(Arrays.asList(destinations));
+    public void add(String destination) {
+        _myRoutes.addAll(Arrays.asList(destination));
     }
 
     public boolean goesTo(String destination) {
