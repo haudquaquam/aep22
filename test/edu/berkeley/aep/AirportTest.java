@@ -10,5 +10,8 @@ public class AirportTest {
     @Test
     public void cToCShouldBeValidRoute() {
         Airport C = new Airport("C");
+        assertTrue(C.goesTo("C"));
     }
+
+
 }
