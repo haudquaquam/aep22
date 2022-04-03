@@ -62,4 +62,15 @@ public class AirportTest {
         assertTrue(finder.findRoute("C", "E"));
     }
 
+    @Test
+    public void findRouteThroughManyAirports() {
+        Airport A = new Airport("A", "B");
+        Airport B = new Airport("B", "C");
+        Airport C = new Airport("C", "D");
+        Airport D = new Airport("D", "E");
+        Airport E = new Airport("E", "F");
+        RouteFinder finder = new RouteFinder(A, B, C, D, E);
+        assertTrue(finder.findRoute("A", "F"));
+    }
+
 }
