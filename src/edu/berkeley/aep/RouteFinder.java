@@ -7,8 +7,8 @@ import java.util.HashMap;
 // Understands ways to get from one airport to another
 public class RouteFinder {
 
-    private HashMap<String, Airport> _myAirports = new HashMap<>();
-    private ArrayList<String> _validAirports = new ArrayList<>();
+    private final HashMap<String, Airport> _myAirports = new HashMap<>();
+    private final ArrayList<String> _validAirports = new ArrayList<>();
 
     public RouteFinder(Airport... airports) {
         for (Airport airport : airports) {
