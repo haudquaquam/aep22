@@ -73,4 +73,17 @@ public class AirportTest {
         assertTrue(finder.findRoute("A", "F"));
     }
 
+    @Test
+    public void invalidRoutesShouldNotWork() {
+        Airport A = new Airport("A", "B");
+        Airport B = new Airport("B", "C");
+        Airport C = new Airport("C", "D");
+        Airport D = new Airport("D", "E");
+        Airport E = new Airport("E", "F");
+        RouteFinder finder = new RouteFinder(A, B, C, D, E);
+        assertFalse(finder.findRoute("F", "A"));
+        assertFalse(finder.findRoute("P", "K"));
+        assertFalse(finder.findRoute("L", "L"));
+    }
+
 }
