@@ -46,4 +46,8 @@ public class RouteFinder {
         return false;
     }
 
+    public int numAirports() {
+        return _myAirports.size();
+    }
+
 }

@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Airport {
 
     private final String _myName;
-    private ArrayList<String> _myRoutes;
+    private final ArrayList<String> _myRoutes;
 
     public Airport(String myName, String... myRoutes) {
         _myName = myName;

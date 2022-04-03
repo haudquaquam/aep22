@@ -99,4 +99,12 @@ public class AirportTest {
         assertFalse(finder.findRoute("B", "G"));
     }
 
+    @Test
+    public void shouldOnlyAddEachAirportOnceIntoRouteFinder() {
+        Airport C = new Airport("C", "E", "E", "D");
+        RouteFinder finder = new RouteFinder(C, C, C);
+        assertEquals(1, finder.numAirports());
+    }
+
+
 }
