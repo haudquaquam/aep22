@@ -14,7 +14,18 @@ public class RouteFinder {
     }
 
     public boolean findRoute(String start, String destination) {
-        return start.equals(destination);
+        if (start.equals(destination)) {
+            return true;
+        } else {
+            if (_myAirports.containsKey(start)) {
+                for (String route : _myAirports.get(start).getRoutes()) {
+                    if (findRoute(route, destination)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }

@@ -10,13 +10,18 @@ public class Airport {
     private final String _myName;
     private ArrayList<String> _myRoutes;
 
-    public Airport(String myName, ArrayList<String> myRoutes) {
+    public Airport(String myName, String... myRoutes) {
         _myName = myName;
-        _myRoutes = myRoutes;
+        _myRoutes = new ArrayList<>();
+        _myRoutes.addAll(Arrays.asList(myRoutes));
     }
 
     public String name() {
         return _myName;
+    }
+
+    public ArrayList<String> getRoutes() {
+        return _myRoutes;
     }
 
     public void add(String... destination) {

@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class AirportTest {
     @Test
     public void cToCShouldBeValidRoute() {
-        Airport C = new Airport("C", new ArrayList<>());
+        Airport C = new Airport("C");
         assertTrue(C.goesTo("C"));
     }
 
@@ -17,7 +17,7 @@ public class AirportTest {
     public void cToEShouldBeValidRoute() {
         ArrayList<String> cRoutes = new ArrayList<>();
         cRoutes.add("E");
-        Airport C = new Airport("C", cRoutes);
+        Airport C = new Airport("C", String.valueOf(cRoutes));
         assertTrue(C.goesTo("C"));
     }
 
@@ -25,7 +25,7 @@ public class AirportTest {
     public void addRouteFunctionShouldWork() {
         ArrayList<String> cRoutes = new ArrayList<>();
         cRoutes.add("E");
-        Airport C = new Airport("C", cRoutes);
+        Airport C = new Airport("C", "E");
         cRoutes.add("F");
         C.add("F");
         for (String dest : cRoutes) {
@@ -39,9 +39,9 @@ public class AirportTest {
         cRoutes.add("E");
         cRoutes.add("K");
         cRoutes.add("P");
-        Airport C = new Airport("C", cRoutes);
         cRoutes.add("F");
-        C.add("F", "K", "P");
+        Airport C = new Airport("C");
+        C.add("F", "K", "P", "E");
         for (String dest : cRoutes) {
             assertTrue(C.goesTo(dest));
         }
@@ -49,9 +49,17 @@ public class AirportTest {
 
     @Test
     public void routeFinderShouldFindRouteFromCToC() {
-        Airport C = new Airport("C", new ArrayList<>());
+        Airport C = new Airport("C");
         RouteFinder finder = new RouteFinder(C);
         assertTrue(finder.findRoute("C", "C"));
+    }
+
+    @Test
+    public void findRouteThroughTwoAirports() {
+        Airport C = new Airport("C", "D");
+        Airport D = new Airport("D", "E");
+        RouteFinder finder = new RouteFinder(C, D);
+        assertTrue(finder.findRoute("C", "E"));
     }
 
 }
