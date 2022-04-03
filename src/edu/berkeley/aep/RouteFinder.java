@@ -15,16 +15,30 @@ public class RouteFinder {
         }
     }
 
+
     public boolean findRoute(String start, String destination) {
+        ArrayList<String> availableList = new ArrayList<>();
+        return findHelper(start, destination, availableList);
+    }
+
+    private boolean findHelper(String start, String destination, ArrayList<String> availableList) {
         if (_validAirports.contains(start)) {
-            if (start.equals(destination)) {
+            if (start == null) {
+                return false;
+            } else if (start.equals(destination)) {
                 return true;
-            } else {
-                if (_myAirports.containsKey(start)) {
-                    for (String route : _myAirports.get(start).getRoutes()) {
-                        if (findRoute(route, destination)) {
-                            return true;
-                        }
+            } else if (_myAirports.isEmpty() || !(_myAirports.containsKey(start))) {
+                return false;
+            }
+            Airport startAirport = _myAirports.get(start);
+
+            for (String destAirport : startAirport.getRoutes()) {
+                if (destAirport.equals(destination)) {
+                    return true;
+                } else if (!availableList.contains(destAirport)) {
+                    availableList.add(destAirport);
+                    if (findHelper(destAirport, destination, availableList)) {
+                        return true;
                     }
                 }
             }

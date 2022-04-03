@@ -1,9 +1,6 @@
 package edu.berkeley.aep;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 // Understands an airport and its routes
 public class Airport {
 

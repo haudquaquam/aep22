@@ -86,4 +86,17 @@ public class AirportTest {
         assertFalse(finder.findRoute("L", "L"));
     }
 
+    @Test
+    public void airportInCycleShouldNotSearchForever() {
+        Airport A = new Airport("A");
+        Airport B = new Airport("B", "C", "A");
+        Airport C = new Airport("C", "E", "E", "D");
+        Airport D = new Airport("D", "E");
+        Airport E = new Airport("E", "B");
+        Airport G = new Airport("G");
+        Airport H = new Airport("H", "B");
+        RouteFinder finder = new RouteFinder(A, B, C, D, E, G, H);
+        assertFalse(finder.findRoute("B", "G"));
+    }
+
 }
