@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class AirportTest {
 
     Airport H = new Airport("H", "B");
-    Airport B = new Airport("B", "C", "A");
+    Airport B = new Airport("B", "A", "C");
     Airport C = new Airport("C", "D", "E");
     Airport D = new Airport("D", "E");
     Airport E = new Airport("E", "B");
@@ -140,12 +140,12 @@ public class AirportTest {
 
     @Test
     public void bToFShouldBeTwoHops() {
-        assertTrue(fullMap.countHops("B", "F") == 2 || fullMap.countHops("B", "F") == 6);
+        assertEquals(2, fullMap.countHops("B", "F"));
     }
 
     @Test
     public void cToBShouldBeTwoOrThreeHops() {
-        assertTrue(fullMap.countHops("C", "B") == 2 || fullMap.countHops("C", "B") == 3);
+        assertEquals(2, fullMap.countHops("C", "B"));
     }
 
     @Test
@@ -156,6 +156,11 @@ public class AirportTest {
     @Test
     public void hToDShouldBeThreeHops() {
         assertEquals(3, fullMap.countHops("H", "D"));
+    }
+
+    @Test
+    public void hToGShouldBeInvalid() {
+        assertEquals(RouteFinder.INVALID_ROUTE, fullMap.countHops("H", "G"));
     }
 
 
