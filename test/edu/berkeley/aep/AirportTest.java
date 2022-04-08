@@ -1,12 +1,24 @@
 package edu.berkeley.aep;
 
 
+import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
 import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 // Tests Airport and RouteFinder classes
 public class AirportTest {
+
+    Airport H = new Airport("H", "B");
+    Airport B = new Airport("B", "C", "A");
+    Airport C = new Airport("C", "D", "E");
+    Airport D = new Airport("D", "E");
+    Airport E = new Airport("E", "B");
+    Airport A = new Airport("A", "F");
+    Airport F = new Airport("F");
+    Airport G = new Airport("G");
+    RouteFinder fullMap = new RouteFinder(H, B, A, F, G, C, E, D);
+
     @Test
     public void cToCShouldBeValidRoute() {
         Airport C = new Airport("C");
@@ -105,6 +117,47 @@ public class AirportTest {
         RouteFinder finder = new RouteFinder(C, C, C);
         assertEquals(1, finder.numAirports());
     }
+
+    @Test
+    public void fullMapTest() {
+        assertTrue(fullMap.findRoute("H", "F"));
+        assertTrue(fullMap.findRoute("H", "E"));
+        assertTrue(fullMap.findRoute("B", "F"));
+        assertTrue(fullMap.findRoute("G", "G"));
+        assertTrue(fullMap.findRoute("E", "F"));
+        assertTrue(fullMap.findRoute("C", "F"));
+        assertTrue(fullMap.findRoute("D", "C"));
+
+        assertFalse(fullMap.findRoute("G", "A"));
+        assertFalse(fullMap.findRoute("F", "D"));
+        assertFalse(fullMap.findRoute("H", "G"));
+    }
+
+    @Test
+    public void hToHShouldBeZeroHops() {
+        assertEquals(0, fullMap.countHops("H", "H"));
+    }
+
+    @Test
+    public void bToFShouldBeTwoHops() {
+        assertTrue(fullMap.countHops("B", "F") == 2 || fullMap.countHops("B", "F") == 6);
+    }
+
+    @Test
+    public void cToBShouldBeTwoOrThreeHops() {
+        assertTrue(fullMap.countHops("C", "B") == 2 || fullMap.countHops("C", "B") == 3);
+    }
+
+    @Test
+    public void aToFShouldBeOneHops() {
+        assertEquals(1, fullMap.countHops("A", "F"));
+    }
+
+    @Test
+    public void hToDShouldBeThreeHops() {
+        assertEquals(3, fullMap.countHops("H", "D"));
+    }
+
 
 
 }

@@ -1,11 +1,13 @@
 package edu.berkeley.aep;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 // Understands an airport and its routes
 public class Airport {
 
     private final String _myName;
-    private final ArrayList<String> _myRoutes;
+    private final List<String> _myRoutes;
 
     public Airport(String myName, String... myRoutes) {
         _myName = myName;
@@ -17,7 +19,7 @@ public class Airport {
         return _myName;
     }
 
-    public ArrayList<String> getRoutes() {
+    public List<String> getRoutes() {
         return _myRoutes;
     }
 
